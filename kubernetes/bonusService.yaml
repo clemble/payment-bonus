@@ -1,8 +1,8 @@
-id: suggestion
+id: bonus
 kind: Service
 apiVersion: v1beta1
 selector:
-  name: suggestion
+  name: bonus
 containerPort: 10008
 protocol: TCP
 port: 80
