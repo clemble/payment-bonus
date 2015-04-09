@@ -1,0 +1,11 @@
+id: suggestion
+kind: Service
+apiVersion: v1beta1
+selector:
+  name: suggestion
+containerPort: 10008
+protocol: TCP
+port: 80
+publicIPs:
+  - "104.155.58.110"
+createExternalLoadBalancer: true

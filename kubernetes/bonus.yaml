@@ -1,0 +1,25 @@
+kind: ReplicationController
+id: bonus-controller
+apiVersion: v1beta1
+desiredState:
+  replicas: 1
+  replicaSelector:
+    name: bonus
+    version: v1
+  podTemplate:
+    labels:
+      name : bonus
+      version: v1
+    desiredState:
+      manifest:
+        containers:
+          - name: bonus
+            image: clemble/bonus:latest
+            imagePullPolicy : PullAlways
+            ports:
+              - containerPort: 10008
+                hostPort: 10008
+                protocol: TCP
+            labels:
+              name : bonus
+              version: v1
