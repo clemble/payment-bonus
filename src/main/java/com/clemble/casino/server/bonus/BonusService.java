@@ -36,7 +36,7 @@ public class BonusService {
         // Step 3. Processing new transaction and updating bonus marker
         if(bonusPolicy.eligible(transaction)) {
             // Step 4. Sending bonus notification to system
-            systemNotificationService.send(new SystemPaymentTransactionRequestEvent(transaction));
+            systemNotificationService.send(new SystemPaymentTransactionRequestEvent(transaction.getTransactionKey(), transaction));
         }
         LOG.debug("Finished processing {}", bonus);
     }
