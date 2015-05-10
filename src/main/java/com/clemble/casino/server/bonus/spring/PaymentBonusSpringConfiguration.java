@@ -2,6 +2,7 @@ package com.clemble.casino.server.bonus.spring;
 
 import com.clemble.casino.money.Currency;
 import com.clemble.casino.money.Money;
+import com.clemble.casino.payment.bonus.GoalReachedBonusPaymentSource;
 import com.clemble.casino.server.bonus.BonusService;
 import com.clemble.casino.server.bonus.listener.*;
 import com.clemble.casino.server.bonus.policy.BonusPolicy;
@@ -109,6 +110,20 @@ public class PaymentBonusSpringConfiguration implements SpringConfiguration {
         notificationServiceListener.subscribe(discoveryBonusService);
         return discoveryBonusService;
     }
+
+    @Bean
+    @DependsOn("bonusService")
+    public BonusSystemGoalReachedEventListener bonusSystemGoalReachedEventListener(
+            BonusService bonusService,
+            SystemNotificationServiceListener notificationServiceListener,
+            @Value("${clemble.bonus.goal.reached.currency}") Currency discoveryCurrency,
+            @Value("${clemble.bonus.goal.reached.amount}") int discoveryBonus) {
+        Money bonus = new Money(discoveryCurrency, discoveryBonus);
+        BonusSystemGoalReachedEventListener goalReachedBonus = new BonusSystemGoalReachedEventListener(bonus, bonusService);
+        notificationServiceListener.subscribe(goalReachedBonus);
+        return goalReachedBonus;
+    }
+
 
     @Bean
     public BonusPolicy bonusPolicy() {

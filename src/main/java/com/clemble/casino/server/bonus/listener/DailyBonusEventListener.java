@@ -29,8 +29,7 @@ public class DailyBonusEventListener implements BonusEventListener<SystemPlayerE
             return;
         // Step 2. Generating unique bonus marker for the day
         DailyBonusPaymentSource paymentSource = new DailyBonusPaymentSource(DateTime.now(DateTimeZone.UTC));
-        String transactionKey = paymentSource.toTransactionKey(event.getPlayer());
-        // Step 3. Processing bonus in bonusService 
+        // Step 3. Processing bonus in bonusService
         bonusService.process(new BonusPaymentTransaction(event.getPlayer(), paymentSource, amount));
     }
 
