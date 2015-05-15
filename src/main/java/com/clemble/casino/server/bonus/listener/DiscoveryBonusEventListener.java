@@ -40,7 +40,7 @@ public class DiscoveryBonusEventListener implements BonusEventListener<SystemPla
 
     @Override
     public String getQueueName() {
-        return SystemPlayerDiscoveredConnectionEvent.CHANNEL + " > payment:bonus:discovery";
+        return SystemPlayerDiscoveredConnectionEvent.CHANNEL + " > bonus";
     }
 
 }

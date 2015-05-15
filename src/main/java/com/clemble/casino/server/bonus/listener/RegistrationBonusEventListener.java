@@ -43,7 +43,7 @@ public class RegistrationBonusEventListener implements BonusEventListener<System
 
     @Override
     public String getQueueName() {
-        return SystemPlayerCreatedEvent.CHANNEL + " > payment:bonus:registration";
+        return SystemPlayerCreatedEvent.CHANNEL + " > bonus";
     }
 
 }

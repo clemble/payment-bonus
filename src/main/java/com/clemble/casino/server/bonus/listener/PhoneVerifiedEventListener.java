@@ -45,7 +45,7 @@ public class PhoneVerifiedEventListener implements BonusEventListener<SystemPhon
 
     @Override
     public String getQueueName() {
-        return SystemPhoneVerifiedEvent.CHANNEL + " > payment:bonus";
+        return SystemPhoneVerifiedEvent.CHANNEL + " > bonus";
     }
 
 }

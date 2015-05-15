@@ -33,11 +33,23 @@ public class PaymentBonusSpringConfiguration implements SpringConfiguration {
     @DependsOn("bonusService")
     public DailyBonusEventListener dailyBonusService(
             BonusService bonusService,
-            @Value("${clemble.bonus.daily.currency}") Currency dailyCurrency,
-            @Value("${clemble.bonus.daily.amount}") int dailyBonus) {
+            @Value("${clemble.bonus.client.error.currency}") Currency dailyCurrency,
+            @Value("${clemble.bonus.client.error.amount}") int dailyBonus) {
         Money bonus = new Money(dailyCurrency, dailyBonus);
         DailyBonusEventListener dailyBonusService = new DailyBonusEventListener(bonus, bonusService);
         return dailyBonusService;
+    }
+
+    @Bean
+    @DependsOn("bonusService")
+    public ClientErrorBonusEventListener clientErrorBonusEventListener(
+        BonusService bonusService,
+        @Value("${clemble.bonus.daily.currency}") Currency currency,
+        @Value("${clemble.bonus.daily.amount}") int bonus
+    ) {
+        Money bonusAmount = new Money(currency, bonus);
+        ClientErrorBonusEventListener clientErrorBonusService = new ClientErrorBonusEventListener(bonusAmount, bonusService);
+        return clientErrorBonusService;
     }
 
     @Bean

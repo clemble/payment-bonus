@@ -45,7 +45,7 @@ public class EmailVerifiedEventListener implements SystemEventListener<SystemEma
 
     @Override
     public String getQueueName() {
-        return SystemEmailVerifiedEvent.CHANNEL + " > payment:bonus";
+        return SystemEmailVerifiedEvent.CHANNEL + " > bonus";
     }
 
 }

@@ -36,6 +36,6 @@ public class SocialAddedBonusEventListener implements BonusEventListener<SystemP
 
     @Override
     public String getQueueName() {
-        return SystemPlayerSocialAddedEvent.CHANNEL + " > payment:bonus:social";
+        return SystemPlayerSocialAddedEvent.CHANNEL + " > bonus";
     }
 }
