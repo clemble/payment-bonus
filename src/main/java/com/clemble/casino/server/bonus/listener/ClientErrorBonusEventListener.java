@@ -1,6 +1,6 @@
 package com.clemble.casino.server.bonus.listener;
 
-import com.clemble.casino.error.ClembleCasinoError;
+import com.clemble.casino.error.ClembleErrorCode;
 import com.clemble.casino.money.Money;
 import com.clemble.casino.payment.bonus.ClientErrorBonusPaymentSource;
 import com.clemble.casino.server.bonus.BonusPaymentTransaction;
@@ -30,7 +30,7 @@ public class ClientErrorBonusEventListener implements BonusEventListener<SystemC
         if (event == null)
             return;
         // Step 2. Generating unique bonus marker for the day
-        ClientErrorBonusPaymentSource paymentSource = new ClientErrorBonusPaymentSource(ClembleCasinoError.forCode(event.getError().getCode()), DateTime.now(DateTimeZone.UTC));
+        ClientErrorBonusPaymentSource paymentSource = new ClientErrorBonusPaymentSource(ClembleErrorCode.valueOf(event.getError().getCode()), DateTime.now(DateTimeZone.UTC));
         // Step 3. Processing bonus in bonusService
         bonusService.process(new BonusPaymentTransaction(event.getPlayer(), paymentSource, amount));
     }
