@@ -30,7 +30,7 @@ public class ClientErrorBonusEventListener implements BonusEventListener<SystemC
         if (event == null)
             return;
         // Step 2. Generating unique bonus marker for the day
-        ClientErrorBonusPaymentSource paymentSource = new ClientErrorBonusPaymentSource(ClembleErrorCode.valueOf(event.getError().getCode()), DateTime.now(DateTimeZone.UTC));
+        ClientErrorBonusPaymentSource paymentSource = new ClientErrorBonusPaymentSource(event.getError().getCode(), DateTime.now(DateTimeZone.UTC));
         // Step 3. Processing bonus in bonusService
         bonusService.process(new BonusPaymentTransaction(event.getPlayer(), paymentSource, amount));
     }
