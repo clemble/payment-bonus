@@ -1,0 +1,13 @@
+language: java
+
+jdk:
+    - oraclejdk8
+
+services:
+    - rabbitmq
+    - mongodb
+
+after_script:
+    - mkdir -p shippable/buildoutput
+    - cp ./target/payment-bonus-*-SNAPSHOT.jar ./shippable/buildoutput/payment-bonus.jar
+
